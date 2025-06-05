@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import 'dotenv/config'; // مفيد للتجربة محليًا
 
 let handler = async (m, { conn, text }) => {
   await conn.sendMessage(m.chat, { react: { text: '🤖', key: m.key } });
@@ -10,7 +11,7 @@ let handler = async (m, { conn, text }) => {
   } catch (e) {
     await m.reply("حدث خطأ:\n" + e.message);
   }
-}
+};
 
 handler.help = ["زيريف"];
 handler.tags = ["ai"];
@@ -22,6 +23,9 @@ export default handler;
 
 async function askOpenRouter(prompt) {
   const apiKey = process.env.OPENROUTER_API_KEY;
+
+  if (!apiKey) throw new Error("لم يتم العثور على مفتاح OpenRouter");
+
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
