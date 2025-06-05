@@ -332,7 +332,7 @@ await filesInit(pluginFolder).then(_ => Object.keys(global.plugins)).catch(conso
 
 */
 
-const pluginFolder = global.__dirname(join(__dirname, './plugins/index'));
+const pluginFolder = global.__dirname(join(__dirname, './plugins/'));
 const pluginFilter = (filename) => /\.js$/.test(filename);
 global.plugins = {};
 async function filesInit() {
