@@ -21,7 +21,7 @@ export default handler;
 // ============ OpenRouter Function ============
 
 async function askOpenRouter(prompt) {
-  const apiKey = "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"; // ضع مفتاح OpenRouter هنا
+  const apiKey = process.env.OPENROUTER_API_KEY;
   const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
     method: "POST",
     headers: {
